@@ -39,6 +39,10 @@ public class NPC_Behavior : MonoBehaviour
             }
             case(npcState.Siege): {
                 target=GetEnemyInLoS();
+                if(enemyBase==null) {
+                    state=npcState.Idle;
+                    break;
+                }
                 if(target!=null) {
                     state=npcState.Combat;
                 } else {

@@ -7,6 +7,7 @@ public class Health : MonoBehaviour
     public int startingHealth;
     public GameObject corpse;
     int health;
+    bool isDead = false;
 
     void Start()
     {
@@ -23,10 +24,14 @@ public class Health : MonoBehaviour
         {
             health = 100;
         }
+        isDead=false;
     }
 
     void TakeDamage(int damage)
     {
+        if(isDead) {
+            //return;
+        }
         health -= damage;
         if(health<=0)
         {
@@ -36,7 +41,20 @@ public class Health : MonoBehaviour
 
     void Die()
     {
-        Debug.Log("Dead!");
+        if(isDead) {
+            return;
+        }
+        isDead=true;
+        if(gameObject.tag=="Player") {
+            GameManager.KillPlayer();
+        } else if(gameObject.tag=="RED") {
+            GameManager.KillRed();
+        } else if(gameObject.name=="RedBase") {
+            GameManager.DestroyRedBase();
+        } else if(gameObject.name=="BlueBase") {
+            GameManager.DestroyBlueBase();
+        }
+
         Instantiate(corpse, transform.position+Vector3.up, Quaternion.identity);
         Destroy(gameObject);
     }

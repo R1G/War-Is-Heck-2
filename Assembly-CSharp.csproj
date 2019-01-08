@@ -213,6 +213,8 @@
      <Compile Include="Assets\Scripts\Combat.cs" />
      <Compile Include="Assets\Scripts\Crosshair.cs" />
      <Compile Include="Assets\Scripts\CrosshairManager.cs" />
+     <Compile Include="Assets\Scripts\Endgame.cs" />
+     <Compile Include="Assets\Scripts\GameManager.cs" />
      <Compile Include="Assets\Scripts\Health.cs" />
      <Compile Include="Assets\Scripts\NPC_Behavior.cs" />
      <None Include="Assets\ExternalAssets\PostProcessing\Resources\Shaders\DepthOfField.shader" />
