@@ -1,0 +1,20 @@
+﻿<Properties StartupConfiguration="{090E8EDE-D6BF-E53D-B00C-68568BCF0089}|">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Health.cs">
+    <Files>
+      <File FileName="Assets/ExternalAssets/Standard Assets/Characters/ThirdPersonCharacter/Scripts/AICharacterControl.cs" Line="15" Column="29" />
+      <File FileName="Assets/ExternalAssets/Standard Assets/Characters/ThirdPersonCharacter/Scripts/ThirdPersonUserControl.cs" Line="40" Column="74" />
+      <File FileName="Assets/ExternalAssets/Standard Assets/Characters/ThirdPersonCharacter/Scripts/ThirdPersonCharacter.cs" Line="141" Column="1" />
+      <File FileName="Assets/ExternalAssets/Standard Assets/Cameras/Scripts/ProtectCameraFromWallClip.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Combat.cs" Line="14" Column="6" />
+      <File FileName="Assets/Scripts/Attack.cs" Line="15" Column="9" />
+      <File FileName="Assets/Health.cs" Line="23" Column="26" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="Unity.Editor" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>
