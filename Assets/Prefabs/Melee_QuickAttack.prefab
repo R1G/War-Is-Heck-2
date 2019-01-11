@@ -104,6 +104,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6047fa5a4bee4484daba264ffde15a54, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 50
+  damage: 10
   attacker: {fileID: 0}
   attackDuration: 0.1

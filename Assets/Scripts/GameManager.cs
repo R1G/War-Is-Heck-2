@@ -4,54 +4,65 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    static GameObject[] redTeam;
+    public List<GameObject> blueTeam = new List<GameObject>();
+    public List<GameObject> redTeam = new List<GameObject>();
+    public GameObject player;
+    bool gameOver;
 
-    static int redCount=0;
+    public int redCount=0;
+    public int blueCount=0;
     public enum Clauses {Deathmatch=1, Siege=2, Death=3, Red=10, Blue=100};
     void Start()
     {
-        redTeam = GameObject.FindGameObjectsWithTag("RED");
-        redCount = redTeam.Length;
+        player = GameObject.FindGameObjectWithTag("Player");
+        gameOver=false;
     }
 
-    public static void KillRed() {
+    public void KillRed(GameObject red) {
+        redTeam.Remove(red);
         redCount--;
-        if(redCount<=0) {
+        if(redTeam.Count<=0) {
             EndMatch(Clauses.Blue, Clauses.Deathmatch);
         }
     }
 
-    public static void DestroyBlueBase() {
+    public void KillBlue(GameObject blue) {
+        blueCount--;
+        redTeam.Remove(blue);
+    }
+
+    public void DestroyBlueBase() {
         EndMatch(Clauses.Red, Clauses.Siege);
     }
 
-    public static void DestroyRedBase() {
+    public void DestroyRedBase() {
         EndMatch(Clauses.Blue, Clauses.Siege);
     }
 
-    public static void KillPlayer() {
-        EndMatch(Clauses.Red, Clauses.Death);
+    public void KillPlayer() {
+        GameObject blueBase = GameObject.Find("BlueBase");
+        player = Instantiate(player, blueBase.transform.position+Vector3.forward, Quaternion.identity);
     }
 
-    static void EndMatch(Clauses side, Clauses reason) {
+    void EndMatch(Clauses side, Clauses reason) {
+        if(gameOver) {
+            return;
+        }
+        gameOver=true;
         GameObject endgameUI = Instantiate(Resources.Load("EndgameUI")) as GameObject;
         endgameUI.GetComponent<Endgame>().SetEndText(side, reason);
-        DisableAllScripts();
+        //DisableAllScripts();
     }
 
-    static void DisableAllScripts() {
-        GameObject[] reds = GameObject.FindGameObjectsWithTag("RED"); 
-        GameObject[] blues = GameObject.FindGameObjectsWithTag("BLUE");
-        GameObject player = GameObject.FindGameObjectWithTag("Player");
-
-        foreach(GameObject red in reds) {
+    void DisableAllScripts() {
+        foreach(GameObject red in redTeam) {
             Behaviour[] scripts = red.GetComponents<Behaviour>();
             foreach(Behaviour script in scripts){
                 script.enabled = false;
             }
         }
 
-        foreach(GameObject blue in blues) {
+        foreach(GameObject blue in blueTeam) {
             Behaviour[] scripts = blue.GetComponents<Behaviour>();
             foreach(Behaviour script in scripts){
                 script.enabled = false;

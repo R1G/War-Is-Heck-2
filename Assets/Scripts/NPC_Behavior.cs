@@ -6,24 +6,35 @@ using UnityEngine.AI;
 public class NPC_Behavior : MonoBehaviour
 {
     public SkinnedMeshRenderer mesh;
+    GameManager gm;
     public Material blueMaterial;
-    NavMeshAgent agent;
+    NavMeshAgent agent; 
+    Combat combat;
+
+    public float maxViewRange;
+    
     enum npcState {Idle, Siege, Combat};
     npcState state = npcState.Idle;
-    Combat combat;
+
     GameObject enemyBase;
     GameObject target;
 
     // Start is called before the first frame update
     void Start()
     {
+        gm = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
         combat=GetComponent<Combat>();
         agent=GetComponent<NavMeshAgent>();
         if(gameObject.tag=="BLUE") {
             mesh.material=blueMaterial;
             enemyBase=GameObject.Find("RedBase");
+            gm.blueTeam.Add(this.gameObject);
+            gm.blueCount++;
         } else {
             enemyBase=GameObject.Find("BlueBase");
+            gm.redTeam.Add(this.gameObject);
+            gm.redCount++;
+            
         }
     }
 
@@ -38,11 +49,12 @@ public class NPC_Behavior : MonoBehaviour
                 break;
             }
             case(npcState.Siege): {
-                target=GetEnemyInLoS();
                 if(enemyBase==null) {
                     state=npcState.Idle;
                     break;
                 }
+                target=GetEnemyInLoS();
+
                 if(target!=null) {
                     state=npcState.Combat;
                 } else {
@@ -58,7 +70,9 @@ public class NPC_Behavior : MonoBehaviour
                     state=npcState.Idle;
                     break;
                 } 
+
                 if(Vector3.Distance(gameObject.transform.position, target.transform.position)<=combat.attackRange) {
+                    transform.LookAt(target.transform.position);
                     combat.Attack();
                 } 
                 agent.SetDestination(target.transform.position);
@@ -68,10 +82,48 @@ public class NPC_Behavior : MonoBehaviour
     }
 
     GameObject GetEnemyInLoS() {
+        List<GameObject> enemies;
         if(gameObject.tag=="BLUE") {
-            return GameObject.FindGameObjectWithTag("RED");
+            enemies=gm.redTeam;
         } else {
-            return GameObject.FindGameObjectWithTag("BLUE");
+            enemies=gm.blueTeam;
+            int randomIndex = Random.Range(0, enemies.Count-1);
+            enemies.Insert(randomIndex, gm.player);
         }
+        foreach(GameObject enemy in enemies) {
+            if(enemy==null) {
+                continue;
+            }
+            if(isInLoS(enemy)) {
+                return enemy;
+            }
+        }
+        return null;
+    }
+
+    bool isInLoS(GameObject losTarget) {
+        if(GetDistanceFrom(losTarget)>maxViewRange) {
+            return false;
+        }
+        return true;
+        RaycastHit hit;
+        if(Physics.Raycast(transform.position, GetDirectionTo(losTarget), out hit, maxViewRange-1f)) {
+            if(hit.transform.gameObject==losTarget) {
+                return true;
+            }
+        }
+        return false;
+        
+    }
+
+    float GetDistanceFrom(GameObject distTarget) {
+        if(distTarget==null) {
+            return Mathf.Infinity;
+        }
+        return Vector3.Distance(transform.position, distTarget.transform.position);
+    }
+
+    Vector3 GetDirectionTo(GameObject dirTarget) {
+        return dirTarget.transform.position-transform.position;
     }
 }

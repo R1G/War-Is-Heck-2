@@ -5,12 +5,15 @@ using UnityEngine;
 public class Health : MonoBehaviour
 {
     public int startingHealth;
+    GameManager gm;
     public GameObject corpse;
     int health;
     bool isDead = false;
+    public bool isImmune = false;
 
     void Start()
     {
+        gm = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
         ResetHealth();
     }
 
@@ -29,7 +32,7 @@ public class Health : MonoBehaviour
 
     void TakeDamage(int damage)
     {
-        if(isDead) {
+        if(isDead || isImmune) {
             //return;
         }
         health -= damage;
@@ -46,13 +49,15 @@ public class Health : MonoBehaviour
         }
         isDead=true;
         if(gameObject.tag=="Player") {
-            GameManager.KillPlayer();
+            gm.KillPlayer();
+        } else if(gameObject.tag=="BLUE") {
+            gm.KillBlue(gameObject);
         } else if(gameObject.tag=="RED") {
-            GameManager.KillRed();
+            gm.KillRed(gameObject);
         } else if(gameObject.name=="RedBase") {
-            GameManager.DestroyRedBase();
+            gm.DestroyRedBase();
         } else if(gameObject.name=="BlueBase") {
-            GameManager.DestroyBlueBase();
+            gm.DestroyBlueBase();
         }
 
         Instantiate(corpse, transform.position+Vector3.up, Quaternion.identity);

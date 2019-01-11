@@ -87,6 +87,9 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 			}
 			else
 			{
+				if(m_Rigidbody==null || m_Capsule==null) {
+					return;
+				}
 				Ray crouchRay = new Ray(m_Rigidbody.position + Vector3.up * m_Capsule.radius * k_Half, Vector3.up);
 				float crouchRayLength = m_CapsuleHeight - m_Capsule.radius * k_Half;
 				if (Physics.SphereCast(crouchRay, m_Capsule.radius * k_Half, crouchRayLength, Physics.AllLayers, QueryTriggerInteraction.Ignore))
@@ -105,6 +108,9 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 			// prevent standing up in crouch-only zones
 			if (!m_Crouching)
 			{
+				if(m_Rigidbody==null || m_Capsule==null) {
+					return;
+				}
 				Ray crouchRay = new Ray(m_Rigidbody.position + Vector3.up * m_Capsule.radius * k_Half, Vector3.up);
 				float crouchRayLength = m_CapsuleHeight - m_Capsule.radius * k_Half;
 				if (Physics.SphereCast(crouchRay, m_Capsule.radius * k_Half, crouchRayLength, Physics.AllLayers, QueryTriggerInteraction.Ignore))
@@ -118,6 +124,9 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 		void UpdateAnimator(Vector3 move)
 		{
 			// update the animator parameters
+			if(m_Animator==null) {
+				return;
+			}
 			m_Animator.SetFloat("Forward", m_ForwardAmount, 0.1f, Time.deltaTime);
 			m_Animator.SetFloat("Turn", m_TurnAmount, 0.1f, Time.deltaTime);
 			m_Animator.SetBool("Crouch", m_Crouching);
@@ -212,7 +221,10 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 			{
 				m_GroundNormal = hitInfo.normal;
 				m_IsGrounded = true;
-				m_Animator.applyRootMotion = true;
+				if(m_Animator!=null) {
+					m_Animator.applyRootMotion = true;
+				}
+				
 			}
 			else
 			{

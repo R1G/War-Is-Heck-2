@@ -1331,6 +1331,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6572252982408261319}
   - component: {fileID: 1710867917115353289}
+  - component: {fileID: 1578706161935711833}
   m_Layer: 0
   m_Name: blueBody
   m_TagString: Untagged
@@ -1371,6 +1372,20 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &1578706161935711833
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5786041582021101190}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37fac21d1f093d344816942d1abce94e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_TimeOut: 10
+  m_DetachChildren: 0
 --- !u!1 &5984256498794740498
 GameObject:
   m_ObjectHideFlags: 0

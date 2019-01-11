@@ -374,6 +374,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mesh: {fileID: 1613720632}
   blueMaterial: {fileID: 2100000, guid: f8bc4c03cd00142cf8dd3d4e120a2457, type: 2}
+  maxViewRange: 15
 --- !u!1 &1273264729
 GameObject:
   m_ObjectHideFlags: 0

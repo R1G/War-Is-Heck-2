@@ -33,7 +33,7 @@ public class Endgame : MonoBehaviour
             
             //Blue destroys base
             case ((int)GameManager.Clauses.Blue*(int)GameManager.Clauses.Siege): {
-                endScreenText.text=LoseTitle;
+                endScreenText.text=WinTitle;
                 endScreenSubtitle.text=SiegeWin;
                 break;
             }
