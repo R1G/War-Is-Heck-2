@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -14,6 +15,7 @@ public class GameManager : MonoBehaviour
     public enum Clauses {Deathmatch=1, Siege=2, Death=3, Red=10, Blue=100};
     void Start()
     {
+        Instantiate(Resources.Load("StartgameUI"));
         player = GameObject.FindGameObjectWithTag("Player");
         gameOver=false;
     }
@@ -51,30 +53,12 @@ public class GameManager : MonoBehaviour
         gameOver=true;
         GameObject endgameUI = Instantiate(Resources.Load("EndgameUI")) as GameObject;
         endgameUI.GetComponent<Endgame>().SetEndText(side, reason);
+        Invoke("GoBackToStartMenu", 5f);
         //DisableAllScripts();
     }
 
-    void DisableAllScripts() {
-        foreach(GameObject red in redTeam) {
-            Behaviour[] scripts = red.GetComponents<Behaviour>();
-            foreach(Behaviour script in scripts){
-                script.enabled = false;
-            }
-        }
-
-        foreach(GameObject blue in blueTeam) {
-            Behaviour[] scripts = blue.GetComponents<Behaviour>();
-            foreach(Behaviour script in scripts){
-                script.enabled = false;
-            }
-        }
-
-        if(player!=null) {
-            Behaviour[] scripts = player.GetComponents<Behaviour>();
-            foreach(Behaviour script in scripts){
-                script.enabled = false;
-            }
-        }
+    void GoBackToStartMenu() {
+        SceneManager.LoadScene(0);
     }
 
 }

@@ -1,19 +1,37 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityStandardAssets.Utility;
 
 public class Health : MonoBehaviour
 {
     public int startingHealth;
     GameManager gm;
     public GameObject corpse;
+    GameObject healthMesh;
+    AudioSource audio;
+    TextMesh healthText;
     int health;
     bool isDead = false;
     public bool isImmune = false;
 
     void Start()
     {
+        audio = GetComponent<AudioSource>();
         gm = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
+        healthMesh = Instantiate(Resources.Load("HealthMesh"), transform.position, Quaternion.identity) as GameObject;
+        healthMesh.GetComponent<FollowTarget>().target=gameObject.transform;
+        healthMesh.GetComponent<FollowTarget>().offset= new Vector3(0f, 1.5f, 0f);
+        healthText = healthMesh.GetComponent<TextMesh>();
+        
+        if(startingHealth>1000) {
+            healthText.characterSize=0.2f;
+        }
+
+        if(startingHealth>10000) {
+            healthText.characterSize=0.4f;
+        }
         ResetHealth();
     }
 
@@ -28,18 +46,24 @@ public class Health : MonoBehaviour
             health = 100;
         }
         isDead=false;
+        healthText.text=health.ToString();
+        isImmune=false;
     }
 
     void TakeDamage(int damage)
     {
         if(isDead || isImmune) {
-            //return;
+            return;
         }
         health -= damage;
+        isImmune = true;
+        healthText.text=health.ToString();
         if(health<=0)
         {
             Die();
         }
+        audio.Play();
+        Invoke("RemoveImmunity", 0.3f);
     }
 
     void Die()
@@ -61,6 +85,11 @@ public class Health : MonoBehaviour
         }
 
         Instantiate(corpse, transform.position+Vector3.up, Quaternion.identity);
+        Destroy(healthMesh);
         Destroy(gameObject);
+    }
+
+    void RemoveImmunity() {
+        isImmune=false;
     }
 }

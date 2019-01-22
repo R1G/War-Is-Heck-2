@@ -33,13 +33,16 @@ namespace UnityStandardAssets.Cameras
         {
             base.Start();
             m_OriginalRotation = transform.localRotation;
+            if(m_Target==null) {
+                m_Target=GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Transform>();
+            }
         }
 
 
         protected override void FollowTarget(float deltaTime)
         {
             // we make initial calculations from the original local rotation
-            transform.localRotation = m_OriginalRotation;
+            //transform.localRotation = m_OriginalRotation;
 
             // tackle rotation around Y first
             Vector3 localTarget = transform.InverseTransformPoint(m_Target.position);

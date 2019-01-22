@@ -215,9 +215,12 @@
      <Compile Include="Assets\Scripts\CrosshairManager.cs" />
      <Compile Include="Assets\Scripts\Endgame.cs" />
      <Compile Include="Assets\Scripts\GameManager.cs" />
+     <Compile Include="Assets\Scripts\Grenade.cs" />
      <Compile Include="Assets\Scripts\Health.cs" />
      <Compile Include="Assets\Scripts\NPC_Behavior.cs" />
      <Compile Include="Assets\Scripts\Spawner.cs" />
+     <Compile Include="Assets\Scripts\Startgame.cs" />
+     <Compile Include="Assets\Scripts\StartMenu.cs" />
      <None Include="Assets\ExternalAssets\PostProcessing\Resources\Shaders\DepthOfField.shader" />
      <None Include="Assets\ExternalAssets\Standard Assets\Effects\GlassRefraction\Shaders\GlassStainedBumpDistort.shader" />
      <None Include="Assets\ExternalAssets\Standard Assets\Effects\ToonShading\Shaders\ToonBasic.shader" />
