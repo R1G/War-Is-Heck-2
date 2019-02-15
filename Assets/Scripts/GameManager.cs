@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
     public List<GameObject> redTeam = new List<GameObject>();
     public GameObject player;
     bool gameOver;
+    public bool testMode;
 
     public int redCount=0;
     public int blueCount=0;
@@ -47,7 +48,7 @@ public class GameManager : MonoBehaviour
     }
 
     void EndMatch(Clauses side, Clauses reason) {
-        if(gameOver) {
+        if(gameOver || testMode) {
             return;
         }
         gameOver=true;

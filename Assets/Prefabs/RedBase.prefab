@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2047668963412743755}
   - component: {fileID: 2047668963412743748}
   - component: {fileID: 7967763032922339685}
+  - component: {fileID: 2874047760511198763}
   m_Layer: 0
   m_Name: RedBase
   m_TagString: Untagged
@@ -105,4 +106,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startingHealth: 250
-  corpse: {fileID: 0}
+  corpse: {fileID: 3202367517806996133, guid: 575a4dcae89a14ffbae300c8c144c3fd, type: 3}
+  isImmune: 0
+--- !u!114 &2874047760511198763
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2047668963412743749}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0d1561c418c14da8b8c6b61c36b22d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnObject: {fileID: 75739677, guid: eb066617b0071488b9e7630dc76b9ffa, type: 3}
+  spawnRate: 5
+  spawnSize: 5

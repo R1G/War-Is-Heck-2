@@ -9,6 +9,7 @@ public class Combat : MonoBehaviour
     public AudioSource weaponAudio;
     Health health;
     Animator anim;
+    Rigidbody rb;
     public float attackSpeed;
     public float attackRange;
 
@@ -21,6 +22,7 @@ public class Combat : MonoBehaviour
     void Start() {
         anim = GetComponent<Animator>();
         health = GetComponent<Health>();
+        rb=GetComponent<Rigidbody>();
         if(gameObject.tag=="Player") {
             isPlayer=true;
         }
@@ -38,7 +40,7 @@ public class Combat : MonoBehaviour
 
         if(isPlayer && grenadeReady && Input.GetKeyUp(KeyCode.G)) {
             ThrowGrenade();
-            Invoke("ResetGrenadeTimer", 3f);
+            Invoke("ResetGrenadeTimer", 1f);
         }
     }
 
@@ -51,8 +53,12 @@ public class Combat : MonoBehaviour
     }
 
     public void Attack() {
-        anim.SetTrigger("Hit");
-        Invoke("LightAttack", 0.5f);
+        if(attackReady) 
+        {
+            attackReady = false;
+            anim.SetTrigger("Hit");
+            Invoke("LightAttack", 0.3f);
+        }
     }
 
     public void Block() {
@@ -60,15 +66,15 @@ public class Combat : MonoBehaviour
     }
 
     private void LightAttack() {
+        Dash(0.8f);
         GameObject attack = Instantiate(attackObj, transform.position+transform.forward, Quaternion.identity);
         attack.GetComponent<Attack>().attacker = this.gameObject;
-        attackReady = false;
         Invoke("ResetAttackTimer", attackSpeed);
     }
 
     private void ThrowGrenade() {
         GameObject grenade = Instantiate(grenadeObj, transform.position+Vector3.up*2, Quaternion.identity);
-        grenade.GetComponent<Rigidbody>().AddForce(Camera.main.transform.forward*60f);
+        grenade.GetComponent<Rigidbody>().AddForce(Camera.main.transform.forward*200f);
         grenadeReady=false;
     }
 
@@ -76,6 +82,13 @@ public class Combat : MonoBehaviour
         health.isImmune=true;
         blockReady=false;
         Invoke("Unblock", 0.5f);
+    }
+
+    private void Dash(float duration) {
+        if(duration>0f) {
+            rb.AddForce(transform.forward*50);
+            Dash(duration-Time.deltaTime);
+        }
     }
 
     private void Unblock() {

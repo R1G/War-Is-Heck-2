@@ -236,8 +236,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackObj: {fileID: 4953268243455156753, guid: c1d3706abbd06417bac86177dac8d7f6,
     type: 3}
-  attackSpeed: 0.5
-  attackRange: 1.5
+  grenadeObj: {fileID: 0}
+  weaponAudio: {fileID: 0}
+  attackSpeed: 1
+  attackRange: 2.2
 --- !u!114 &75739678
 MonoBehaviour:
   m_ObjectHideFlags: 0

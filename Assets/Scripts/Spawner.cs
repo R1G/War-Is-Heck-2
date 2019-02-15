@@ -28,7 +28,6 @@ public class Spawner : MonoBehaviour
             Invoke("Spawn", 0.2f*i);
         }
         isSpawning=false;
-        Debug.Log(gm.blueCount+gm.redCount);
     }
 
     void Spawn() {
