@@ -10,7 +10,6 @@ public class Health : MonoBehaviour
     GameManager gm;
     public GameObject corpse;
     GameObject healthMesh;
-    AudioSource audio;
     TextMesh healthText;
     int health;
     bool isDead = false;
@@ -18,7 +17,6 @@ public class Health : MonoBehaviour
 
     void Start()
     {
-        audio = GetComponent<AudioSource>();
         gm = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
         healthMesh = Instantiate(Resources.Load("HealthMesh"), transform.position, Quaternion.identity) as GameObject;
         healthMesh.GetComponent<FollowTarget>().target=gameObject.transform;
@@ -62,7 +60,6 @@ public class Health : MonoBehaviour
         {
             Die();
         }
-        audio.Play();
         Invoke("RemoveImmunity", 0.3f);
     }
 

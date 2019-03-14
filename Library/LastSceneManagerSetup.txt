@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Scenes/Tenochtitlan.unity
+- path: Assets/Scenes/Siege.unity
   isLoaded: 1
   isActive: 1

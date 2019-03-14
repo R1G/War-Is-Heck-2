@@ -43,7 +43,7 @@ MonoBehaviour:
   ambientOcclusion:
     m_Enabled: 1
     m_Settings:
-      intensity: 1
+      intensity: 2.29
       radius: 0.3
       sampleCount: 10
       downsampling: 1
@@ -86,12 +86,12 @@ MonoBehaviour:
   eyeAdaptation:
     m_Enabled: 0
     m_Settings:
-      lowPercent: 45
-      highPercent: 95
-      minLuminance: -5
-      maxLuminance: 1
-      keyValue: 0.25
-      dynamicKeyValue: 1
+      lowPercent: 1
+      highPercent: 99
+      minLuminance: -1
+      maxLuminance: 2
+      keyValue: 0.4
+      dynamicKeyValue: 0
       adaptationType: 0
       speedUp: 2
       speedDown: 1
@@ -122,8 +122,8 @@ MonoBehaviour:
         neutralWhiteClip: 10
       basic:
         postExposure: 1
-        temperature: 20
-        tint: 0
+        temperature: 25
+        tint: 25
         hueShift: 0
         saturation: 1.5
         contrast: 1
@@ -139,9 +139,9 @@ MonoBehaviour:
           power: {r: 1, g: 1, b: 1, a: 0}
           offset: {r: 1, g: 1, b: 1, a: 0}
         linear:
-          lift: {r: 0, g: 0, b: 0, a: 0}
-          gamma: {r: 0, g: 0, b: 0, a: 0}
-          gain: {r: 0, g: 0, b: 0, a: 0}
+          lift: {r: 1, g: 1, b: 1, a: 0}
+          gamma: {r: 1, g: 1, b: 1, a: 0}
+          gain: {r: 1, g: 1, b: 1, a: 0}
       curves:
         master:
           curve:
