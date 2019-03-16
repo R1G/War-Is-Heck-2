@@ -55,13 +55,13 @@ public class NPC_Behavior : MonoBehaviour
                 break;
             }
             case(NPC.Combat): {
-                if(target!=null) {combat.Attack();} else {state = NPC.Idle;}
+                if(target!=null) {combat.Attack(target);} else {state = NPC.Idle;}
                 break;
             }
             case(NPC.Siege): {
                 target = FindEnemyInLoS();
                 if(target!=null) {state=NPC.Combat; break;}
-                if(enemyBase!=null) {combat.AttackBase();} else {state=NPC.Idle;};
+                if(enemyBase!=null) {combat.Attack(enemyBase);} else {state=NPC.Idle;};
                 break;
             }
         }

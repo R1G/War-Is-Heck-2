@@ -35,6 +35,7 @@ public class GameManager : MonoBehaviour
 
     public enum Clauses {Deathmatch=1, Siege=2, Death=3, Red=10, Blue=100};
     public enum Side {Red, Blue};
+    public enum Weapon {Machete, PillGun};
 
     void Start()
     {
@@ -90,7 +91,6 @@ public class GameManager : MonoBehaviour
     }
 
     public List<GameObject> GetSquad(GameManager.Side side, int index) {
-        Debug.Log(index);
         return (side==GameManager.Side.Blue) ? blueSquads[index] : redSquads[index];
     }
 

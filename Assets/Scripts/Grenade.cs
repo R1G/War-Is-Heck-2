@@ -4,30 +4,18 @@ using UnityEngine;
 
 public class Grenade : MonoBehaviour
 {
-    public float radius;
-    public float damage;
-    public float force;
-    GameObject target;
-    bool hasExploded;
-    // Start is called before the first frame update
-    void Start()
-    {
-        hasExploded=false;
-    }
+    public float velocity;
+    Rigidbody rb;
 
-    // Update is called once per frame
-    void OnCollisionEnter(Collision coll)
-    {
-        if(!hasExploded) {
-            target=coll.gameObject;
-            Explode();
-            hasExploded=true;
-        }
+    void Start() {
+        rb = GetComponent<Rigidbody>();
+        rb.velocity = transform.forward*velocity;
+    }
+    void OnCollisionEnter() {
+        Invoke("Explode", 0.2f);
     }
 
     void Explode() {
-        Debug.Log(target);
-        target.SendMessage("TakeDamage", 1000, SendMessageOptions.DontRequireReceiver);
         Destroy(gameObject);
     }
 }

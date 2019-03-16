@@ -48,9 +48,15 @@ public class Spawner : MonoBehaviour
         newMeeb.tag = spawnTag;
         List<GameObject> squad = (side==GameManager.Side.Blue) ? gm.currentBlueSquad : gm.currentRedSquad;
         newMeeb.GetComponent<NPC_Behavior>().squadIndex = gm.GetSquadIndex(side)-1;
+        newMeeb.GetComponent<Combat>().weapon = PickRandomWeapon();
     }
 
     void ResetSpawn() {
         isSpawning=true;
+    }
+
+    GameManager.Weapon PickRandomWeapon() {
+        float rand = Random.Range(0f, 2f);
+        return rand<=0.2f ? GameManager.Weapon.PillGun : GameManager.Weapon.Machete;
     }
 }

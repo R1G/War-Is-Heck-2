@@ -183,6 +183,7 @@
      <Compile Include="Assets\Scripts\Spawner.cs" />
      <Compile Include="Assets\Scripts\Startgame.cs" />
      <Compile Include="Assets\Scripts\StartMenu.cs" />
+     <Compile Include="Assets\Scripts\Weapon.cs" />
      <None Include="Assets\ExternalAssets\PostProcessing\Resources\Shaders\DepthOfField.shader" />
      <None Include="Assets\ExternalAssets\Standard Assets\Effects\GlassRefraction\Shaders\GlassStainedBumpDistort.shader" />
      <None Include="Assets\ExternalAssets\Standard Assets\Effects\ToonShading\Shaders\ToonBasic.shader" />
