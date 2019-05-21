@@ -452,7 +452,7 @@ MonoBehaviour:
   m_RunCycleLegOffset: 0.2
   m_MoveSpeedMultiplier: 0.25
   m_AnimSpeedMultiplier: 1
-  m_GroundCheckDistance: 1
+  m_GroundCheckDistance: 0.3
 --- !u!114 &5436142929554270858
 MonoBehaviour:
   m_ObjectHideFlags: 0

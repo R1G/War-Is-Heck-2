@@ -3,68 +3,63 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityStandardAssets.Utility;
+using UnityStandardAssets.Characters.ThirdPerson;
 
 public class Health : MonoBehaviour
 {
     public int startingHealth;
+    public bool non_aberrating;
     GameManager gm;
     public GameObject corpse;
-    GameObject healthMesh;
-    TextMesh healthText;
+    SkinnedMeshRenderer mesh;
     int health;
     bool isDead = false;
     public bool isImmune = false;
+    private Color startingColor;
 
-    void Start()
-    {
+    private void Start() {
         gm = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
-        healthMesh = Instantiate(Resources.Load("HealthMesh"), transform.position, Quaternion.identity) as GameObject;
-        healthMesh.GetComponent<FollowTarget>().target=gameObject.transform;
-        healthMesh.GetComponent<FollowTarget>().offset= new Vector3(0f, 1.5f, 0f);
-        healthText = healthMesh.GetComponent<TextMesh>();
-        
-        if(startingHealth>1000) {
-            healthText.characterSize=0.2f;
-        }
-
-        if(startingHealth>10000) {
-            healthText.characterSize=0.4f;
-        }
+        mesh=GetComponentInChildren<SkinnedMeshRenderer>();
+        startingColor = mesh.material.GetColor("_EmissionColor");
         ResetHealth();
+        if(!non_aberrating)
+            AberrateScale();
     }
 
-    void ResetHealth() 
-    {
-        if (startingHealth > 0)
-        {
-            health = startingHealth;
-        }
-        else
-        {
-            health = 100;
-        }
+    private void ResetHealth() {
+        health = (startingHealth>0)? startingHealth : health;
         isDead=false;
-        healthText.text=health.ToString();
         isImmune=false;
     }
 
-    void TakeDamage(int damage)
-    {
+    private void TakeDamage(int damage) {
         if(isDead || isImmune) {
             return;
         }
         health -= damage;
+        
         isImmune = true;
-        healthText.text=health.ToString();
-        if(health<=0)
-        {
+        if(health<=0) {
+            RestoreColor();
             Die();
+        } else {
+            AdjustColor(damage);
         }
         Invoke("RemoveImmunity", 0.3f);
     }
 
-    void Die()
-    {
+    private void AdjustColor(int damage) {
+        Color prevColor = mesh.material.GetColor("_EmissionColor");
+        float health_ratio = (float)damage/(float)(health+damage);
+        Debug.Log(health_ratio);
+        mesh.material.SetColor("_EmissionColor", prevColor+Color.gray*health_ratio);
+    }
+
+    private void RestoreColor() {
+        mesh.material.SetColor("_EmissionColor", startingColor);
+    }
+
+    private void Die() {
         if(isDead) {
             return;
         }
@@ -82,11 +77,18 @@ public class Health : MonoBehaviour
         }
 
         Instantiate(corpse, transform.position+Vector3.up, Quaternion.identity);
-        Destroy(healthMesh);
         Destroy(gameObject);
     }
 
     void RemoveImmunity() {
         isImmune=false;
+    }
+
+    void AberrateScale() {
+        float scaleOffset = Random.Range(0.8f, 1.2f);
+        
+        UnityStandardAssets.Characters.ThirdPerson.ThirdPersonCharacter tp = GetComponent<UnityStandardAssets.Characters.ThirdPerson.ThirdPersonCharacter>();
+        tp.m_MoveSpeedMultiplier *= Mathf.Pow(1/scaleOffset, 4);
+        transform.localScale *= scaleOffset;
     }
 }

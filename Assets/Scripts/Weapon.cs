@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Weapon : MonoBehaviour
 {
-    public Vector3 weaponOffset;
+    public Vector3 weaponRot;
     public float speed;
     public GameObject attackObj;
     public float rate;

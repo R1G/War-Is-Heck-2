@@ -48,9 +48,6 @@ public class GameManager : MonoBehaviour
     public void KillRed(GameObject red) {
         redTeam.Remove(red);
         redCount--;
-        if(redTeam.Count<=0) {
-            EndMatch(Clauses.Blue, Clauses.Deathmatch);
-        }
     }
 
     public void KillBlue(GameObject blue) {

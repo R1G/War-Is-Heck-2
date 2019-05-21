@@ -36,8 +36,8 @@ public class Combat : MonoBehaviour
     }
 
     private void SetWeapon() {
+        Quaternion rot = weaponObj.transform.rotation;
         Destroy(weaponObj);
-        
         if(weapon==GameManager.Weapon.Machete) {
             weaponObj = Instantiate(Resources.Load("Machete"), transform.position, Quaternion.identity) as GameObject;
             anim.SetLayerWeight(1, 0f);
@@ -48,11 +48,11 @@ public class Combat : MonoBehaviour
             anim.SetLayerWeight(1, 1f);
             anim.SetLayerWeight(2, 0f);
             if(!isPlayer) {agent.speed=0.8f;}
-            
         }
+        weaponObj.transform.position=weaponHolder.transform.position;
         weaponObj.transform.SetParent(weaponHolder);
-        //weaponObj.transform.Rotate(new Vector3(0, 0, -90));
-        weaponObj.transform.localPosition = Vector3.zero;
+        weaponObj.transform.localRotation = Quaternion.identity;
+        weaponObj.transform.Rotate(weaponObj.GetComponent<Weapon>().weaponRot);
     }
 
     public void Attack(GameObject target) {
@@ -89,10 +89,9 @@ public class Combat : MonoBehaviour
     }
 
     private Vector3 ComputeTrajectory(float x, float v, float y) {
-        float discriminant = Mathf.Pow(v, 4)-10*(10*Mathf.Pow(x,2)+2*y*Mathf.Pow(v,2));
+        float discriminant = Mathf.Abs(Mathf.Pow(v, 4)-10*(10*Mathf.Pow(x,2)+2*y*Mathf.Pow(v,2)));
         float denominator = -10*x;
         float numerator = Mathf.Pow(v, 2)-Mathf.Sqrt(discriminant);
-        Debug.Log(discriminant);
         return new Vector3(Mathf.Atan(numerator/denominator) * Mathf.Rad2Deg, 0, 0);
     }
 
@@ -106,7 +105,7 @@ public class Combat : MonoBehaviour
             return false;
         }
         //Check Field of View
-        if(Vector3.Angle(GetDirectionTo(losTarget), transform.forward) > 45.0) {
+        if(Vector3.Angle(GetDirectionTo(losTarget), transform.forward) > 60.0) {
             return false;
         }
         //Check Obstacles

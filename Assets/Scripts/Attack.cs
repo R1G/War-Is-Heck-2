@@ -22,7 +22,6 @@ public class Attack : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if(other.gameObject!=attacker) {
-            Debug.Log(other.gameObject.name);
             other.gameObject.SendMessageUpwards("TakeDamage", damage, SendMessageOptions.DontRequireReceiver);
             if(graphic!=null) {
                 Instantiate(graphic, transform.position, Quaternion.identity);
@@ -33,7 +32,6 @@ public class Attack : MonoBehaviour
 
     void EndAttack()
     {
-
         Destroy(gameObject);
     }
 }
