@@ -190,7 +190,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponRot: {x: 90, y: 0, z: -90}
-  speed: 0.5
+  speed: 0.2
   attackObj: {fileID: 4953268243455156753, guid: c1d3706abbd06417bac86177dac8d7f6,
     type: 3}
   rate: 1
@@ -220,7 +220,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8070006855426399227}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.0003, y: -0.0489, z: -0.0036}
+  m_LocalPosition: {x: 0.0003, y: -0.0494, z: -0.0017}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1354607667}

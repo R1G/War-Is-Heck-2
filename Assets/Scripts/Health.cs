@@ -51,7 +51,6 @@ public class Health : MonoBehaviour
     private void AdjustColor(int damage) {
         Color prevColor = mesh.material.GetColor("_EmissionColor");
         float health_ratio = (float)damage/(float)(health+damage);
-        Debug.Log(health_ratio);
         mesh.material.SetColor("_EmissionColor", prevColor+Color.gray*health_ratio);
     }
 

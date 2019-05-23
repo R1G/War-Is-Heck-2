@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
+[RequireComponent(typeof(SkinnedMeshRenderer))]
+[RequireComponent(typeof(Combat))]
 public class NPC_Behavior : MonoBehaviour
 {
     SkinnedMeshRenderer mesh;
@@ -18,8 +20,7 @@ public class NPC_Behavior : MonoBehaviour
     public GameObject target;
 
     // Start is called before the first frame update
-    void Start()
-    {
+    void Start() {
         gm = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
         combat=GetComponent<Combat>();
         mesh=GetComponentInChildren<SkinnedMeshRenderer>();

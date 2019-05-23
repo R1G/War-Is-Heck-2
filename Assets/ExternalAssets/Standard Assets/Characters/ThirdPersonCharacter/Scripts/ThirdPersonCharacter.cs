@@ -44,7 +44,6 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 			m_OrigGroundCheckDistance = m_GroundCheckDistance;
 		}
 
-
 		public void Move(Vector3 move, bool crouch, bool jump)
 		{
 

@@ -180,6 +180,7 @@
      <Compile Include="Assets\Scripts\Grenade.cs" />
      <Compile Include="Assets\Scripts\GunRack.cs" />
      <Compile Include="Assets\Scripts\Health.cs" />
+     <Compile Include="Assets\Scripts\IK_Manager.cs" />
      <Compile Include="Assets\Scripts\NPC_Behavior.cs" />
      <Compile Include="Assets\Scripts\Spawner.cs" />
      <Compile Include="Assets\Scripts\Startgame.cs" />

@@ -83,114 +83,93 @@ ModelImporter:
     rigImportWarnings: 
     animationImportErrors: 
     animationImportWarnings: "\nClip 'Armature|SwingSword' has import animation warnings
-      that might lower retargeting quality:\nNote: Activate translation DOF on avatar
-      to improve retargeting quality.\n\t'Spine' has translation animation that will
-      be discarded.\n\t'Neck' is inbetween humanoid transforms and has rotation animation
-      that will be discarded.\n\t'Thigh.L' has translation animation that will be
-      discarded.\n\t'Thigh.R' has translation animation that will be discarded.\n\nClip
-      'Armature|SwordHeavy' has import animation warnings that might lower retargeting
-      quality:\nNote: Activate translation DOF on avatar to improve retargeting quality.\n\t'Spine'
-      has translation animation that will be discarded.\n\t'Arm.L' has translation
-      animation that will be discarded.\n\t'Arm.R' has translation animation that
-      will be discarded.\n\t'Thigh.L' has translation animation that will be discarded.\n\t'Thigh.R'
-      has translation animation that will be discarded.\n"
+      that might lower retargeting quality:\n\t'Neck' is inbetween humanoid transforms
+      and has rotation animation that will be discarded.\n"
     animationRetargetingWarnings: "\nRetargeting quality report for clip 'Armature|BlockShield':\n\tRetargeting
       quality is good. No significant differences with original animation were found.\n\nRetargeting
       quality report for clip 'Armature|IdleSword':\n\tRetargeting quality is good.
       No significant differences with original animation were found.\n\nRetargeting
       quality report for clip 'Armature|Shoot':\n\tLeftUpperArm average position error
-      10.2 mm and maximum position error 10.2 mm at time 0: 3 (42.9%) Frame 3\n\tLeftLowerArm
+      10.2 mm and maximum position error 10.2 mm at time 0: 2 (28.6%) Frame 2\n\tLeftLowerArm
       average position error 10.2 mm and maximum position error 10.2 mm at time 0:
-      3 (42.9%) Frame 3\n\tLeftHand average position error 10.2 mm and maximum position
+      0 (0.0%) Frame 0\n\tLeftHand average position error 10.2 mm and maximum position
       error 10.2 mm at time 0: 0 (0.0%) Frame 0\n\tRightUpperArm average position
-      error 10.2 mm and maximum position error 10.2 mm at time 0: 4 (57.1%) Frame
-      4\n\tRightLowerArm average position error 10.3 mm and maximum position error
-      10.4 mm at time 0: 0 (0.0%) Frame 0\n\tRightHand average position error 10.2
+      error 10.2 mm and maximum position error 10.2 mm at time 0: 5 (71.4%) Frame
+      5\n\tRightLowerArm average position error 10.2 mm and maximum position error
+      10.2 mm at time 0: 6 (85.7%) Frame 6\n\tRightHand average position error 10.2
       mm and maximum position error 10.2 mm at time 0: 3 (42.9%) Frame 3\n\tHead average
-      position error 82.5 mm and maximum position error 82.5 mm at time 0: 4 (57.1%)
-      Frame 4\n\nRetargeting quality report for clip 'Armature|Shoot_Idle':\n\tLeftUpperArm
+      position error 82.5 mm and maximum position error 82.5 mm at time 0: 5 (71.4%)
+      Frame 5\n\nRetargeting quality report for clip 'Armature|Shoot_Idle':\n\tLeftUpperArm
       average position error 10.2 mm and maximum position error 10.2 mm at time 0:
-      0 (0.0%) Frame 0\n\tLeftLowerArm average position error 10.1 mm and maximum
-      position error 10.2 mm at time 0: 1 (100.0%) Frame 1\n\tLeftHand average position
+      1 (100.0%) Frame 1\n\tLeftLowerArm average position error 10.2 mm and maximum
+      position error 10.2 mm at time 0: 0 (0.0%) Frame 0\n\tLeftHand average position
       error 10.2 mm and maximum position error 10.2 mm at time 0: 0 (0.0%) Frame 0\n\tRightUpperArm
       average position error 10.2 mm and maximum position error 10.2 mm at time 0:
-      0 (0.0%) Frame 0\n\tRightLowerArm average position error 10.3 mm and maximum
-      position error 10.4 mm at time 0: 0 (0.0%) Frame 0\n\tRightHand average position
-      error 10.2 mm and maximum position error 10.2 mm at time 0: 1 (100.0%) Frame
+      0 (0.0%) Frame 0\n\tRightLowerArm average position error 10.2 mm and maximum
+      position error 10.2 mm at time 0: 1 (100.0%) Frame 1\n\tRightHand average position
+      error 10.1 mm and maximum position error 10.2 mm at time 0: 1 (100.0%) Frame
       1\n\tHead average position error 82.5 mm and maximum position error 82.5 mm
       at time 0: 1 (100.0%) Frame 1\n\nRetargeting quality report for clip 'Armature|Shoot_Raise':\n\tLeftUpperArm
       average position error 10.2 mm and maximum position error 10.2 mm at time 0:
-      0 (0.0%) Frame 0\n\tLeftLowerArm average position error 10.1 mm and maximum
-      position error 10.2 mm at time 0: 1 (100.0%) Frame 1\n\tLeftHand average position
+      1 (100.0%) Frame 1\n\tLeftLowerArm average position error 10.2 mm and maximum
+      position error 10.2 mm at time 0: 0 (0.0%) Frame 0\n\tLeftHand average position
       error 10.2 mm and maximum position error 10.2 mm at time 0: 0 (0.0%) Frame 0\n\tRightUpperArm
       average position error 10.2 mm and maximum position error 10.2 mm at time 0:
-      0 (0.0%) Frame 0\n\tRightLowerArm average position error 10.3 mm and maximum
-      position error 10.4 mm at time 0: 0 (0.0%) Frame 0\n\tRightHand average position
-      error 10.2 mm and maximum position error 10.2 mm at time 0: 1 (100.0%) Frame
+      0 (0.0%) Frame 0\n\tRightLowerArm average position error 10.2 mm and maximum
+      position error 10.2 mm at time 0: 1 (100.0%) Frame 1\n\tRightHand average position
+      error 10.1 mm and maximum position error 10.2 mm at time 0: 1 (100.0%) Frame
       1\n\tHead average position error 82.5 mm and maximum position error 82.5 mm
       at time 0: 1 (100.0%) Frame 1\n\nRetargeting quality report for clip 'Armature|Shoot_Raise.001':\n\tLeftUpperArm
       average position error 10.2 mm and maximum position error 10.2 mm at time 0:
-      4 (40.0%) Frame 4\n\tLeftLowerArm average position error 10.2 mm and maximum
-      position error 10.2 mm at time 0:10 (100.0%) Frame 10\n\tLeftHand average position
+      3 (30.0%) Frame 3\n\tLeftLowerArm average position error 10.2 mm and maximum
+      position error 10.2 mm at time 0: 0 (0.0%) Frame 0\n\tLeftHand average position
+      error 10.2 mm and maximum position error 10.2 mm at time 0: 1 (10.0%) Frame
+      1\n\tRightUpperArm average position error 10.2 mm and maximum position error
+      10.2 mm at time 0: 7 (70.0%) Frame 7\n\tRightLowerArm average position error
+      10.2 mm and maximum position error 10.2 mm at time 0: 7 (70.0%) Frame 7\n\tRightHand
+      average position error 10.2 mm and maximum position error 10.3 mm at time 0:
+      3 (30.0%) Frame 3\n\tHead average position error 82.5 mm and maximum position
+      error 82.5 mm at time 0: 1 (10.0%) Frame 1\n\nRetargeting quality report for
+      clip 'Armature|SwingSword':\n\tLeftUpperArm average position error 5.9 mm and
+      maximum position error 9.7 mm at time 0: 6 (25.0%) Frame 6\n\tLeftLowerArm average
+      position error 5.9 mm and maximum position error 9.7 mm at time 0: 6 (25.0%)
+      Frame 6\n\tLeftHand average position error 5.9 mm and maximum position error
+      9.8 mm at time 0: 6 (25.0%) Frame 6\n\tRightUpperArm average position error
+      5.9 mm and maximum position error 9.7 mm at time 0: 6 (25.0%) Frame 6\n\tRightLowerArm
+      average position error 5.9 mm and maximum position error 9.7 mm at time 0: 6
+      (25.0%) Frame 6\n\tRightHand average position error 5.9 mm and maximum position
+      error 9.7 mm at time 0: 6 (25.0%) Frame 6\n\tHead average position error 49.3
+      mm and maximum position error 82.5 mm at time 0: 7 (29.2%) Frame 7\n\nRetargeting
+      quality report for clip 'Armature|SwordHeavy':\n\tLeftUpperArm average position
+      error 96.4 mm and maximum position error 379.0 mm at time 0:16 (53.3%) Frame
+      16\n\tLeftLowerArm average position error 96.4 mm and maximum position error
+      379.0 mm at time 0:16 (53.3%) Frame 16\n\tLeftHand average position error 96.4
+      mm and maximum position error 379.2 mm at time 0:16 (53.3%) Frame 16\n\tRightUpperArm
+      average position error 95.0 mm and maximum position error 330.1 mm at time 0:16
+      (53.3%) Frame 16\n\tRightLowerArm average position error 95.0 mm and maximum
+      position error 330.1 mm at time 0:16 (53.3%) Frame 16\n\tRightHand average position
+      error 95.0 mm and maximum position error 330.1 mm at time 0:16 (53.3%) Frame
+      16\n\nRetargeting quality report for clip 'Armature|T-Pose':\n\tLeftUpperArm
+      average position error 10.2 mm and maximum position error 10.2 mm at time 0:
+      0 (0.0%) Frame 0\n\tLeftLowerArm average position error 10.2 mm and maximum
+      position error 10.2 mm at time 0: 0 (0.0%) Frame 0\n\tLeftHand average position
       error 10.2 mm and maximum position error 10.2 mm at time 0: 0 (0.0%) Frame 0\n\tRightUpperArm
       average position error 10.2 mm and maximum position error 10.2 mm at time 0:
-      9 (90.0%) Frame 9\n\tRightLowerArm average position error 10.3 mm and maximum
-      position error 10.4 mm at time 0: 0 (0.0%) Frame 0\n\tRightHand average position
-      error 10.2 mm and maximum position error 10.2 mm at time 0: 3 (30.0%) Frame
-      3\n\tHead average position error 82.5 mm and maximum position error 82.5 mm
-      at time 0: 5 (50.0%) Frame 5\n\nRetargeting quality report for clip 'Armature|SwingSword':\n\tLeftLowerLeg
-      average position error 215.0 mm and maximum position error 413.9 mm at time
-      1: 0 (100.0%) Frame 24\n\tLeftFoot average position error 215.0 mm and maximum
-      position error 413.9 mm at time 1: 0 (100.0%) Frame 24\n\tRightLowerLeg average
-      position error 217.0 mm and maximum position error 413.9 mm at time 1: 0 (100.0%)
-      Frame 24\n\tRightFoot average position error 217.0 mm and maximum position error
-      413.9 mm at time 1: 0 (100.0%) Frame 24\n\tLeftUpperArm average position error
-      281.5 mm and maximum position error 470.2 mm at time 0:17 (70.8%) Frame 17\n\tLeftLowerArm
-      average position error 281.6 mm and maximum position error 470.4 mm at time
-      0:17 (70.8%) Frame 17\n\tLeftHand average position error 281.5 mm and maximum
-      position error 470.2 mm at time 0:17 (70.8%) Frame 17\n\tRightUpperArm average
-      position error 284.1 mm and maximum position error 468.9 mm at time 0:17 (70.8%)
-      Frame 17\n\tRightLowerArm average position error 284.1 mm and maximum position
-      error 468.6 mm at time 0:17 (70.8%) Frame 17\n\tRightHand average position error
-      284.1 mm and maximum position error 468.9 mm at time 0:17 (70.8%) Frame 17\n\tHead
-      average position error 262.4 mm and maximum position error 431.8 mm at time
-      0:19 (79.2%) Frame 19\n\nRetargeting quality report for clip 'Armature|SwordHeavy':\n\tLeftLowerLeg
-      average position error 832.8 mm and maximum position error 1786.6 mm at time
-      1: 2 (86.7%) Frame 26\n\tLeftFoot average position error 832.8 mm and maximum
-      position error 1786.6 mm at time 1: 2 (86.7%) Frame 26\n\tRightLowerLeg average
-      position error 832.6 mm and maximum position error 1785.2 mm at time 1: 2 (86.7%)
-      Frame 26\n\tRightFoot average position error 832.6 mm and maximum position error
-      1785.2 mm at time 1: 2 (86.7%) Frame 26\n\tLeftUpperArm average position error
-      856.8 mm and maximum position error 1781.9 mm at time 1: 6 (100.0%) Frame 30\n\tLeftLowerArm
-      average position error 856.8 mm and maximum position error 1782.1 mm at time
-      1: 6 (100.0%) Frame 30\n\tLeftHand average position error 856.8 mm and maximum
-      position error 1781.9 mm at time 1: 6 (100.0%) Frame 30\n\tRightUpperArm average
-      position error 811.0 mm and maximum position error 1802.1 mm at time 1: 2 (86.7%)
-      Frame 26\n\tRightLowerArm average position error 811.0 mm and maximum position
-      error 1802.2 mm at time 1: 2 (86.7%) Frame 26\n\tRightHand average position
-      error 811.0 mm and maximum position error 1802.1 mm at time 1: 2 (86.7%) Frame
-      26\n\tHead average position error 826.5 mm and maximum position error 1781.9
-      mm at time 1: 6 (100.0%) Frame 30\n\nRetargeting quality report for clip 'Armature|T-Pose':\n\tLeftUpperArm
-      average position error 10.2 mm and maximum position error 10.2 mm at time 0:
-      0 (0.0%) Frame 0\n\tLeftLowerArm average position error 10.0 mm and maximum
-      position error 10.0 mm at time 0: 0 (0.0%) Frame 0\n\tLeftHand average position
-      error 10.2 mm and maximum position error 10.2 mm at time 0: 0 (0.0%) Frame 0\n\tRightUpperArm
-      average position error 10.2 mm and maximum position error 10.2 mm at time 0:
-      0 (0.0%) Frame 0\n\tRightLowerArm average position error 10.4 mm and maximum
-      position error 10.4 mm at time 0: 0 (0.0%) Frame 0\n\tRightHand average position
-      error 10.2 mm and maximum position error 10.2 mm at time 0: 0 (0.0%) Frame 0\n\tHead
+      0 (0.0%) Frame 0\n\tRightLowerArm average position error 10.2 mm and maximum
+      position error 10.2 mm at time 0: 0 (0.0%) Frame 0\n\tRightHand average position
+      error 10.1 mm and maximum position error 10.1 mm at time 0: 0 (0.0%) Frame 0\n\tHead
       average position error 82.5 mm and maximum position error 82.5 mm at time 0:
       0 (0.0%) Frame 0\n\nRetargeting quality report for clip 'Armature|Throw':\n\tLeftUpperArm
-      average position error 10.2 mm and maximum position error 10.2 mm at time 0:12
-      (60.0%) Frame 12\n\tLeftLowerArm average position error 10.1 mm and maximum
-      position error 11.0 mm at time 0:13 (65.0%) Frame 13\n\tLeftHand average position
-      error 10.2 mm and maximum position error 10.3 mm at time 0:16 (80.0%) Frame
-      16\n\tRightUpperArm average position error 10.2 mm and maximum position error
-      10.2 mm at time 0: 3 (15.0%) Frame 3\n\tRightLowerArm average position error
-      10.4 mm and maximum position error 10.4 mm at time 0: 3 (15.0%) Frame 3\n\tRightHand
-      average position error 10.2 mm and maximum position error 10.2 mm at time 0:
-      3 (15.0%) Frame 3\n\tHead average position error 82.5 mm and maximum position
-      error 82.5 mm at time 0: 2 (10.0%) Frame 2\n"
+      average position error 10.2 mm and maximum position error 10.2 mm at time 0:10
+      (50.0%) Frame 10\n\tLeftLowerArm average position error 10.2 mm and maximum
+      position error 10.2 mm at time 0: 5 (25.0%) Frame 5\n\tLeftHand average position
+      error 10.1 mm and maximum position error 10.3 mm at time 0: 1 (5.0%) Frame 1\n\tRightUpperArm
+      average position error 10.2 mm and maximum position error 10.2 mm at time 0:18
+      (90.0%) Frame 18\n\tRightLowerArm average position error 10.2 mm and maximum
+      position error 10.2 mm at time 0: 9 (45.0%) Frame 9\n\tRightHand average position
+      error 10.1 mm and maximum position error 10.1 mm at time 0: 9 (45.0%) Frame
+      9\n\tHead average position error 82.5 mm and maximum position error 82.5 mm
+      at time 0:18 (90.0%) Frame 18\n"
     animationDoRetargetingWarnings: 1
     importAnimatedCustomProperties: 0
     importConstraints: 0
@@ -215,10 +194,10 @@ ModelImporter:
       hasAdditiveReferencePose: 0
       loopTime: 0
       loopBlend: 0
-      loopBlendOrientation: 0
-      loopBlendPositionY: 0
+      loopBlendOrientation: 1
+      loopBlendPositionY: 1
       loopBlendPositionXZ: 0
-      keepOriginalOrientation: 0
+      keepOriginalOrientation: 1
       keepOriginalPositionY: 1
       keepOriginalPositionXZ: 0
       heightFromFeet: 0
@@ -383,9 +362,9 @@ ModelImporter:
       hasAdditiveReferencePose: 0
       loopTime: 0
       loopBlend: 0
-      loopBlendOrientation: 0
-      loopBlendPositionY: 0
-      loopBlendPositionXZ: 0
+      loopBlendOrientation: 1
+      loopBlendPositionY: 1
+      loopBlendPositionXZ: 1
       keepOriginalOrientation: 1
       keepOriginalPositionY: 1
       keepOriginalPositionXZ: 1
@@ -411,12 +390,12 @@ ModelImporter:
       hasAdditiveReferencePose: 0
       loopTime: 0
       loopBlend: 0
-      loopBlendOrientation: 0
-      loopBlendPositionY: 0
+      loopBlendOrientation: 1
+      loopBlendPositionY: 1
       loopBlendPositionXZ: 1
       keepOriginalOrientation: 1
       keepOriginalPositionY: 1
-      keepOriginalPositionXZ: 1
+      keepOriginalPositionXZ: 0
       heightFromFeet: 0
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
@@ -778,7 +757,7 @@ ModelImporter:
     legStretch: 0.05
     feetSpacing: 0
     rootMotionBoneName: 
-    hasTranslationDoF: 0
+    hasTranslationDoF: 1
     hasExtraRoot: 1
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}

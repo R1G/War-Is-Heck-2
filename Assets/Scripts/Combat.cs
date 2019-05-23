@@ -35,7 +35,7 @@ public class Combat : MonoBehaviour
         } 
     }
 
-    private void SetWeapon() {
+    public void SetWeapon() {
         Quaternion rot = weaponObj.transform.rotation;
         Destroy(weaponObj);
         if(weapon==GameManager.Weapon.Machete) {

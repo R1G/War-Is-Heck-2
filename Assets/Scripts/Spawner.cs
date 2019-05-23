@@ -1,11 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Spawner : MonoBehaviour
 {
     // Start is called before the first frame update
     public GameManager.Side side;
+    public Image timer;
     public float spawnRate;
     public int spawnSize;
     public bool isSpawning = true;
@@ -24,14 +26,21 @@ public class Spawner : MonoBehaviour
             spawnTag = "RED";
         }
         spawnObject = Resources.Load("Meeb") as GameObject;
+        timer.fillAmount = 1f;
+        InvokeRepeating("ReduceTimerFill", 0f, spawnRate/100f);
     }
 
 
     void Update()
     {
         if(isSpawning && (gm.blueCount+gm.redCount)<=30) {
+            timer.fillAmount = 1f;
             SpawnSquad();
         }  
+    }
+
+    private void ReduceTimerFill() {
+        timer.fillAmount -= 0.01f;
     }
 
     void SpawnSquad() {
