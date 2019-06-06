@@ -6,7 +6,7 @@ public class Combat : MonoBehaviour
 {
     public GameObject attackObj;
     public GameManager.Weapon weapon = GameManager.Weapon.PillGun;
-    public GameObject weaponObj;
+    GameObject weaponObj;
     public Transform weaponHolder;
     Animator anim;
     NavMeshAgent agent;
@@ -24,6 +24,7 @@ public class Combat : MonoBehaviour
         } else {
             agent = GetComponent<NavMeshAgent>();
         }
+        weapon = PickRandomWeapon();
         SetWeapon();
     }
 
@@ -36,19 +37,17 @@ public class Combat : MonoBehaviour
     }
 
     public void SetWeapon() {
-        Quaternion rot = weaponObj.transform.rotation;
-        Destroy(weaponObj);
+        if(weaponObj) {Destroy(weaponObj);}
         if(weapon==GameManager.Weapon.Machete) {
             weaponObj = Instantiate(Resources.Load("Machete"), transform.position, Quaternion.identity) as GameObject;
             anim.SetLayerWeight(1, 0f);
             anim.SetLayerWeight(2, 1f);
-            if(!isPlayer) {agent.speed=1.5f;}
         } else if(weapon==GameManager.Weapon.PillGun) {
             weaponObj = Instantiate(Resources.Load("PillGun"), transform.position, Quaternion.identity) as GameObject;
             anim.SetLayerWeight(1, 1f);
             anim.SetLayerWeight(2, 0f);
-            if(!isPlayer) {agent.speed=0.8f;}
         }
+        if(!weaponObj) {return;}
         weaponObj.transform.position=weaponHolder.transform.position;
         weaponObj.transform.SetParent(weaponHolder);
         weaponObj.transform.localRotation = Quaternion.identity;
@@ -56,13 +55,15 @@ public class Combat : MonoBehaviour
     }
 
     public void Attack(GameObject target) {
+        if(weaponObj==null) {return;}
         Weapon w = weaponObj.GetComponent<Weapon>();
         if(isPlayer || (attackReady && isInLoS(target))) {
             attackReady=false;
             anim.SetTrigger("Hit");
-            StartCoroutine(UseWeapon(target, w));
+            StartCoroutine(UseWeapon(target, w)); //Don't want npc to move when in attack range
             if(!isPlayer) {
                 agent.isStopped=true;
+                agent.SetDestination(transform.position);
             }
         } else {
             agent.isStopped=false;
@@ -125,6 +126,11 @@ public class Combat : MonoBehaviour
 
     Vector3 GetDirectionTo(GameObject dirTarget) {
         return dirTarget.transform.position-transform.position;
+    }
+
+    GameManager.Weapon PickRandomWeapon() {
+        float rand = Random.Range(0f, 2f);
+        return rand<=0.2f ? GameManager.Weapon.PillGun : GameManager.Weapon.Machete;
     }
 
 }

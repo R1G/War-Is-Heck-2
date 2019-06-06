@@ -5,27 +5,21 @@ using UnityEngine.UI;
 
 public class Spawner : MonoBehaviour
 {
-    // Start is called before the first frame update
+    public delegate void SpawnerCreate(Spawner t); public static event SpawnerCreate OnSpawnerCreate;
+    public delegate void SquadCreate(GameManager.Side s); public static event SquadCreate OnSquadCreate;
     public GameManager.Side side;
     public Image timer;
     public float spawnRate;
     public int spawnSize;
     public bool isSpawning = true;
 
-    GameObject spawnObject;
+    public GameObject spawnObject;
     GameManager gm;
     string spawnTag;
 
     void Start() {
+        OnSpawnerCreate?.Invoke(this);
         gm = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
-        if(side==GameManager.Side.Blue) {
-            gm.blueBase = gameObject;
-            spawnTag = "BLUE";
-        } else if(side==GameManager.Side.Red) {
-            gm.redBase = gameObject;
-            spawnTag = "RED";
-        }
-        spawnObject = Resources.Load("Meeb") as GameObject;
         timer.fillAmount = 1f;
         InvokeRepeating("ReduceTimerFill", 0f, spawnRate/100f);
     }
@@ -49,23 +43,17 @@ public class Spawner : MonoBehaviour
         }
         isSpawning=false;
         Invoke("ResetSpawn", spawnRate);
-        gm.UpdateSquads(side);
+        OnSquadCreate?.Invoke(side);
     }
 
     void Spawn() {
         GameObject newMeeb = Instantiate(spawnObject, transform.position+transform.forward, Quaternion.identity) as GameObject;
-        newMeeb.tag = spawnTag;
-        List<GameObject> squad = (side==GameManager.Side.Blue) ? gm.currentBlueSquad : gm.currentRedSquad;
-        newMeeb.GetComponent<NPC_Behavior>().squadIndex = gm.GetSquadIndex(side)-1;
-        newMeeb.GetComponent<Combat>().weapon = PickRandomWeapon();
+        NPC_Behavior npc = newMeeb.GetComponent<NPC_Behavior>();
+        npc.side=side;
     }
 
     void ResetSpawn() {
         isSpawning=true;
     }
 
-    GameManager.Weapon PickRandomWeapon() {
-        float rand = Random.Range(0f, 2f);
-        return rand<=0.2f ? GameManager.Weapon.PillGun : GameManager.Weapon.Machete;
-    }
 }

@@ -5,16 +5,14 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    public GameObject blueBase;
-    public GameObject redBase;
+    private GameObject blueBase, redBase;
 
-
-    public List<GameObject> blueTeam = new List<GameObject>();
-    public List<GameObject> redTeam = new List<GameObject>();
+    private List<GameObject> blueTeam = new List<GameObject>();
+    private List<GameObject> redTeam = new List<GameObject>();
 
 
     //TODO: Add randomized squad names and memoirs when they die :')
-    IDictionary<int, List<GameObject>> blueSquads = new Dictionary<int, List<GameObject>>();
+    private IDictionary<int, List<GameObject>> blueSquads = new Dictionary<int, List<GameObject>>();
     public List<GameObject> currentBlueSquad = new List<GameObject>();
     int currentBlueIndex=0;
 
@@ -23,36 +21,69 @@ public class GameManager : MonoBehaviour
     int currentRedIndex=0;
 
 
-    public GameObject player;
+    private GameObject player;
+    private bool gameOver;
 
-
-    bool gameOver;
     public bool matchMode;
-
-
-    public int redCount=0;
-    public int blueCount=0;
+    public int redCount, blueCount=0;
 
     public enum Clauses {Deathmatch=1, Siege=2, Death=3, Red=10, Blue=100};
     public enum Side {Red, Blue};
     public enum Weapon {Machete, PillGun};
 
-    void Start()
-    {
+    private void OnEnable() {
+        Spawner.OnSpawnerCreate += AddSpawner;
+        NPC_Behavior.OnCreateNPC += AddNPC;
+        Player.OnCreatePlayer += AddPlayer;
+        Spawner.OnSquadCreate += UpdateSquads;
+    }
+
+    private void OnDisable() {
+        Spawner.OnSpawnerCreate -= AddSpawner;
+        NPC_Behavior.OnCreateNPC -= AddNPC;
+        Player.OnCreatePlayer -= AddPlayer;
+        Spawner.OnSquadCreate -= UpdateSquads;
+    }
+
+    void Start() {
         Instantiate(Resources.Load("StartgameUI"));
         player = GameObject.FindGameObjectWithTag("Player");
         blueTeam.Add(player);
         gameOver=false;
     }
 
-    public void KillRed(GameObject red) {
+    private void AddNPC(NPC_Behavior npc) {
+        if(npc.side==Side.Red) {
+            redTeam.Add(npc.gameObject);
+        } else if(npc.side==Side.Blue) {
+            blueTeam.Add(npc.gameObject);
+        }
+        AddToSquad(npc.side, npc.gameObject);
+    }
+
+    private void AddPlayer(GameObject _player) {
+        player = _player;
+    }
+
+    private void KillRed(GameObject red) {
         redTeam.Remove(red);
         redCount--;
     }
 
-    public void KillBlue(GameObject blue) {
+    private void KillBlue(GameObject blue) {
         blueCount--;
         redTeam.Remove(blue);
+    }
+
+    private void AddSpawner(Spawner s) {
+        if(s.side == Side.Blue) 
+            blueBase = s.gameObject;
+        if(s.side == Side.Red) 
+            redBase = s.gameObject;
+    }
+    
+    public GameObject GetEnemySpawner(Side s) {
+        return (s==Side.Red)? blueBase : redBase;
     }
 
     public void DestroyBlueBase() {
@@ -63,7 +94,11 @@ public class GameManager : MonoBehaviour
         EndMatch(Clauses.Blue, Clauses.Siege);
     }
 
-    public void UpdateSquads(GameManager.Side side) {
+    public List<GameObject> GetTeam(Side s) {
+        return (s==Side.Red)? redTeam : blueTeam;
+    }
+
+    private void UpdateSquads(GameManager.Side side) {
         if(side==GameManager.Side.Blue) {
             blueSquads.Add(currentBlueIndex, currentBlueSquad);
             currentBlueSquad = new List<GameObject>();
@@ -75,7 +110,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void AddToSquad(GameManager.Side side, GameObject newMeeb) {
+    private void AddToSquad(GameManager.Side side, GameObject newMeeb) {
         if(side==GameManager.Side.Blue) {
             currentBlueSquad.Add(newMeeb);
         } else if(side==GameManager.Side.Red) {
@@ -83,12 +118,8 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public int GetSquadIndex(GameManager.Side side) {
-        return (side==GameManager.Side.Blue) ? currentBlueIndex : currentRedIndex;
-    }
-
-    public List<GameObject> GetSquad(GameManager.Side side, int index) {
-        return (side==GameManager.Side.Blue) ? blueSquads[index] : redSquads[index];
+    public List<GameObject> GetSquad(GameManager.Side side) {
+        return (side==GameManager.Side.Blue) ? currentBlueSquad : currentRedSquad;
     }
 
     public void KillPlayer() {

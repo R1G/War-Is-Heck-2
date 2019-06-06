@@ -7,8 +7,8 @@ using UnityStandardAssets.Characters.ThirdPerson;
 
 public class Health : MonoBehaviour
 {
+    public delegate void KillUnit(GameObject go); public static event KillUnit OnKillUnit;
     public int startingHealth;
-    public bool non_aberrating;
     GameManager gm;
     public GameObject corpse;
     SkinnedMeshRenderer mesh;
@@ -20,10 +20,7 @@ public class Health : MonoBehaviour
     private void Start() {
         gm = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
         mesh=GetComponentInChildren<SkinnedMeshRenderer>();
-        startingColor = mesh.material.GetColor("_EmissionColor");
         ResetHealth();
-        if(!non_aberrating)
-            AberrateScale();
     }
 
     private void ResetHealth() {
@@ -49,6 +46,7 @@ public class Health : MonoBehaviour
     }
 
     private void AdjustColor(int damage) {
+        if(mesh==null) {return;}
         Color prevColor = mesh.material.GetColor("_EmissionColor");
         float health_ratio = (float)damage/(float)(health+damage);
         mesh.material.SetColor("_EmissionColor", prevColor+Color.gray*health_ratio);
@@ -59,35 +57,15 @@ public class Health : MonoBehaviour
     }
 
     private void Die() {
-        if(isDead) {
+        if(isDead) 
             return;
-        }
         isDead=true;
-        if(gameObject.tag=="Player") {
-            gm.KillPlayer();
-        } else if(gameObject.tag=="BLUE") {
-            gm.KillBlue(gameObject);
-        } else if(gameObject.tag=="RED") {
-            gm.KillRed(gameObject);
-        } else if(gameObject.name=="RedBase") {
-            gm.DestroyRedBase();
-        } else if(gameObject.name=="BlueBase") {
-            gm.DestroyBlueBase();
-        }
-
+        OnKillUnit?.Invoke(gameObject);
         Instantiate(corpse, transform.position+Vector3.up, Quaternion.identity);
         Destroy(gameObject);
     }
 
     void RemoveImmunity() {
         isImmune=false;
-    }
-
-    void AberrateScale() {
-        float scaleOffset = Random.Range(0.8f, 1.2f);
-        
-        UnityStandardAssets.Characters.ThirdPerson.ThirdPersonCharacter tp = GetComponent<UnityStandardAssets.Characters.ThirdPerson.ThirdPersonCharacter>();
-        tp.m_MoveSpeedMultiplier *= Mathf.Pow(1/scaleOffset, 4);
-        transform.localScale *= scaleOffset;
     }
 }

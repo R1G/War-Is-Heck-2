@@ -7,49 +7,40 @@ using UnityEngine.AI;
 [RequireComponent(typeof(Combat))]
 public class NPC_Behavior : MonoBehaviour
 {
+    public delegate void CreateNPC(NPC_Behavior n); public static event CreateNPC OnCreateNPC;
     SkinnedMeshRenderer mesh;
     GameManager gm;
     Combat combat;
-    public int squadIndex;
     List<GameObject> squad;
     enum NPC {Idle, Combat, Siege};
     NPC state = NPC.Idle;
-    GameManager.Side side;
+    public GameManager.Side side;
     public float maxViewRange;
     public GameObject enemyBase;
     public GameObject target;
 
     // Start is called before the first frame update
     void Start() {
-        gm = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
         combat=GetComponent<Combat>();
         mesh=GetComponentInChildren<SkinnedMeshRenderer>();
+        gm = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
+        OnCreateNPC?.Invoke(this);
         setTeam();
-        squad = gm.GetSquad(side, squadIndex);
+        squad = gm.GetSquad(side);
     }
 
     void setTeam() {
-        if(gameObject.tag=="BLUE") {
-            mesh.material=Resources.Load("emmBlue") as Material;
+        if(side==GameManager.Side.Blue) {
             enemyBase=GameObject.Find("RedBase");
-            gm.blueTeam.Add(this.gameObject);
-            gm.blueCount++;
-            side = GameManager.Side.Blue;
         } else {
-            mesh.material=Resources.Load("emmRed") as Material;
             enemyBase=GameObject.Find("BlueBase");
-            gm.redTeam.Add(this.gameObject);
-            gm.redCount++;
-            side = GameManager.Side.Red;
-            
         }
     }
     // Update is called once per frame
-    void Update()
-    {
+    void Update() {
         switch(state) {
             case(NPC.Idle): {
-                enemyBase = FindEnemyBase();
+                enemyBase = gm.GetEnemySpawner(side);
                 target = FindEnemyInLoS();
                 if(enemyBase!=null) {state=NPC.Siege;}
                 if(target!=null) {state=NPC.Combat;}
@@ -68,28 +59,16 @@ public class NPC_Behavior : MonoBehaviour
         }
     }
     
-    GameObject FindEnemyBase() {
-        if(gameObject.tag=="BLUE") {
-            return gm.redBase;
-        } else {
-            return gm.blueBase;
-        }
-    }
     GameObject FindEnemyInLoS() {
         //Set Team
-        List<GameObject> enemies;
-        if(gameObject.tag=="BLUE") {
-            enemies=gm.redTeam;
-        } else {
-            enemies=gm.blueTeam;
-        }
+        List<GameObject> enemies = (side==GameManager.Side.Red) ? gm.GetTeam(GameManager.Side.Blue) : gm.GetTeam(GameManager.Side.Red);
         //Find Enemy
         GameObject foundEnemy = null;
         foreach(GameObject enemy in enemies) {
             if(enemy==null) {
                 continue;
             }
-            if(isInLoS(enemy)) {
+            if(Utils.IsInLoS(gameObject, enemy)) {
                 foundEnemy=enemy;
                 break;
             }
@@ -98,39 +77,10 @@ public class NPC_Behavior : MonoBehaviour
         if(foundEnemy!=null && foundEnemy.GetComponent<NPC_Behavior>()!=null) {
             foundEnemy.GetComponent<NPC_Behavior>().target=gameObject;
             foreach(GameObject friendly in squad) {
-                if(friendly==null) {
-                    continue;
-                }
-                friendly.GetComponent<NPC_Behavior>().target = foundEnemy;
+                if(friendly!=null)
+                    friendly.GetComponent<NPC_Behavior>().target = foundEnemy;
             }
         }
-        
         return foundEnemy;
-    }
-    bool isInLoS(GameObject losTarget) {
-        //Check In Range
-        if(GetDistanceFrom(losTarget)>maxViewRange) {
-            return false;
-        }
-        //Check Field of View
-        if(Vector3.Angle(GetDirectionTo(losTarget), transform.forward) > 45.0) {
-            return false;
-        }
-        //Check Obstacles
-        RaycastHit hit;
-        if(Physics.Raycast(transform.position, GetDirectionTo(losTarget), out hit, GetDistanceFrom(losTarget)-2f)) {
-            return false;
-        }
-        return true;
-    }
-    float GetDistanceFrom(GameObject distTarget) {
-        if(distTarget==null) {
-            return Mathf.Infinity;
-        }
-        return Vector3.Distance(transform.position, distTarget.transform.position);
-    }
-
-    Vector3 GetDirectionTo(GameObject dirTarget) {
-        return dirTarget.transform.position-transform.position;
     }
 }
